@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,11 @@ SECRET_KEY = 'sqe*kn30bj#h*o_*!ljwi-za(_288m1))i_d)7uk9ftegcd$9m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+with open(os.path.join('data', 'ips.json'), 'r') as json_file:
+    ip_data = json.load(json_file)
+host_ip = ip_data['host']['ip']
+
+ALLOWED_HOSTS = [host_ip]
 
 
 # Application definition
