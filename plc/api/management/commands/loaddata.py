@@ -12,6 +12,7 @@ def load_json(filename):
         data = json.load(json_file)
     return data
 
+
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
