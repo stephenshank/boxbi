@@ -28,9 +28,10 @@ DEBUG = True
 
 with open(os.path.join('data', 'ips.json'), 'r') as json_file:
     ip_data = json.load(json_file)
-host_ip = ip_data['host']['ip']
+assert ip_data[0]['id'] == 'host'
+host_ip = ip_data[0]['address']
 
-ALLOWED_HOSTS = [host_ip]
+ALLOWED_HOSTS = [host_ip, 'localhost']
 
 
 # Application definition
