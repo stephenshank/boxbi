@@ -8,8 +8,8 @@ def test(request):
     return JsonResponse({'status': 1})
 
 
-def plc(request):
-    plcs = PLC.objects.filter(ip='db')
+def plc(request, ip):
+    plcs = PLC.objects.filter(ip=ip)
     ip_address = plcs[0].ip.address
     tags = {plc.plc_id: plc.tag for plc in plcs}
     c = SlcDriver()
