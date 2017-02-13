@@ -1,17 +1,19 @@
 import json
 import os
 
-from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from pycomm.ab_comm.slc import Driver as SlcDriver
 import pyodbc
 
 from api.models import PLC
 
 
+@api_view()
 def test(request):
-    return JsonResponse({'status': 1})
+    return Response({'status': 1})
 
-
+@api_view()
 def plc(request, ip):
     plcs = PLC.objects.filter(ip=ip)
     ip_address = plcs[0].ip.address
@@ -24,9 +26,9 @@ def plc(request, ip):
                 states[key] = c.read_tag(value)
             except:
                 states[key] = ''
-    return JsonResponse(states)
+    return Response(states)
 
-
+@api_view()
 def odbc(request):
     odbc_path = os.path.join('data', 'odbc.txt')
     with open(odbc_path, 'r') as odbc_file:
@@ -68,4 +70,4 @@ def odbc(request):
     cursor.close()
     connection.close()
     all_info = {'Order': order_info, 'Rolls': roll_info}
-    return JsonResponse(all_info)
+    return Response(all_info)
