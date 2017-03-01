@@ -1,13 +1,16 @@
 import json
 import os
 
+from django.shortcuts import render
+from django.core import serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import serializers
 from pycomm.ab_comm.slc import Driver as SlcDriver
 import pyodbc
 
 from api.utils import get_plc_data
-from api.models import PLC
+from api.models import PLC, CorrData
 
 
 @api_view()
@@ -16,9 +19,21 @@ def test(request):
 
 
 @api_view()
-def plc(request, ip):
-    states = get_plc_data(ip)
+def plc(request):
+    states = get_plc_data()
     return Response(states)
+
+
+class CorrDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CorrData
+        fields = '__all__'
+
+
+@api_view()
+def realtime(request):
+    current_state = DBSerializer(CorrData.objects.latest())
+    return Response(current_state.data)
 
 
 @api_view()
@@ -64,3 +79,7 @@ def odbc(request):
     connection.close()
     all_info = {'Order': order_info, 'Rolls': roll_info}
     return Response(all_info)
+
+
+def card(request):
+    return render(request, 'api/recipeCard.html')
