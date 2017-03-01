@@ -1,0 +1,63 @@
+#recipeCardNavToStackerPage{
+        position: absolute;
+    z-index: 2;
+    font-family: Myriad Pro;
+    font-weight: bold;
+    text-align: right;
+    
+}
+
+#recipeCardLabelHeader{
+    
+    position: absolute;
+    z-index: 2;
+    font-family: Myriad Pro;
+    font-weight: bold;
+    text-align: center;
+}
+.hotPlate{
+    display: table;
+    position: absolute;
+    background-color: #000;
+    z-index: 3;
+}
+.hotPlateInner{
+    display: table-cell;
+    z-index: 3;
+    font-family: Myriad Pro;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.recipeCardMoistLeft{
+   
+    position: absolute;
+    z-index: 2;
+    font-family: Myriad Pro;
+    font-weight: bold;
+    text-align: left;
+}
+.recipeCardMoistRight{
+   
+    position: absolute;
+    z-index: 2;
+    font-family: Myriad Pro;
+    font-weight: bold;
+    text-align: right;
+}
+
+#recipeCardMachineSpeed{
+    position: absolute;
+    z-index: 2;
+    font-family: Myriad Pro;
+    font-weight: bold;
+    text-align: center;
+    color: #FFF;
+}
+.rotatingDials{
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

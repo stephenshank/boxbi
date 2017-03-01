@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html >
+<head>
+  {% load staticfiles %}
+  <meta charset="UTF-8">
+  <title>CorrGUI</title>
+  <script type="text/javascript" src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <!--<script type="text/javascript" src="main.js"></script>-->
+  <script type="text/javascript" src="{% static 'api/recipeCard.js' %}"></script>
+  
+  
+
+
+  <link rel="stylesheet" href="{% static 'api/style.css' %}">
+  <link rel="stylesheet" href="{% static 'api/recipeCard.css' %}">
+
+
+</head>
+  <body>
+    <div class="content">
+    <div id="baseBG" class="bg"></div>
+    
+    <div id="recipeCardLabelHeader">Recipe Card</div>
+     <div id="recipeCardClock" class="recipeCardMoistLeft">#NULL#</div>
+     <!--<div id="recipeCardNavToStackerPage">To Stacker</div>-->
+     
+     <div id="recipeCardBase" class="bg"></div>
+     
+     <div id="recipeCardHotPlate1OutterUP" class="hotPlate">
+      <div class="hotPlateInner">1</div>
+     </div>
+     <div id="recipeCardHotPlate1OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">1</div>
+     </div>
+     <div id="recipeCardHotPlate2OutterUP" class="hotPlate">
+      <div class="hotPlateInner">2</div>
+     </div>
+     <div id="recipeCardHotPlate2OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">2</div>
+     </div>
+     <div id="recipeCardHotPlate3OutterUP" class="hotPlate">
+      <div class="hotPlateInner">3</div>
+     </div>
+     <div id="recipeCardHotPlate3OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">3</div>
+     </div>
+     <div id="recipeCardHotPlate4OutterUP" class="hotPlate">
+      <div class="hotPlateInner">4</div>
+     </div>
+     <div id="recipeCardHotPlate4OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">4</div>
+     </div>
+     <div id="recipeCardHotPlate5OutterUP" class="hotPlate">
+      <div class="hotPlateInner">5</div>
+     </div>
+     <div id="recipeCardHotPlate5OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">5</div>
+     </div>
+     
+     <div id="recipeCardHotPlate6OutterUP" class="hotPlate">
+      <div class="hotPlateInner">6</div>
+     </div>
+     <div id="recipeCardHotPlate6OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">6</div>
+     </div>
+     <div id="recipeCardHotPlate7OutterUP" class="hotPlate">
+      <div class="hotPlateInner">7</div>
+     </div>
+     <div id="recipeCardHotPlate7OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">7</div>
+     </div>
+     <div id="recipeCardHotPlate8OutterUP" class="hotPlate">
+      <div class="hotPlateInner">8</div>
+     </div>
+     <div id="recipeCardHotPlate8OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">8</div>
+     </div>
+     <div id="recipeCardHotPlate9OutterUP" class="hotPlate">
+      <div class="hotPlateInner">9</div>
+     </div>
+     <div id="recipeCardHotPlate9OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">9</div>
+     </div>
+     <div id="recipeCardHotPlate10OutterUP" class="hotPlate">
+      <div class="hotPlateInner">10</div>
+     </div>
+     <div id="recipeCardHotPlate10OutterDOWN" class="hotPlate">
+      <div class="hotPlateInner">10</div>
+     </div>
+     
+     <div id="recipeCardRSLabel" class="recipeCardMoistLeft">#NULL#</div>
+     <div id="recipeCardRSInfo" class="recipeCardMoistRight">
+      <input type="text" id="roll_1" class="rollInputTextBox"/>
+      <input type="text" id="roll_2" class="rollInputTextBox"/>
+      <input type="text" id="roll_3" class="rollInputTextBox"/>
+      <input type="text" id="roll_4" class="rollInputTextBox"/>
+      <input type="text" id="roll_5" class="rollInputTextBox"/>
+      
+     </div>
+     <div id="recipeCardBFluteSFInfo" class="recipeCardMoistLeft">#NULL#</div>
+     <div id="recipeCardCEFLuteSFInfo" class="recipeCardMoistLeft">#NULL#</div>
+     <div id="recipeCardTripleStackPHInfo" class="recipeCardMoistLeft">#NULL#</div>
+     
+     <div id="recipeCardDBGlueStationInfo" class="recipeCardMoistLeft">#NULL#</div>
+     
+     <div id="recipeCardMoistSFTOP" class="recipeCardMoistLeft">#NULL#</div>
+     <div id="recipeCardMoistSFTOPDial" class="rotatingDials"></div>
+     <div id="recipeCardMoistDBBOT" class="recipeCardMoistLeft">#NULL#</div>
+     <div id="recipeCardMoistDBBOTDial" class="rotatingDials"></div>
+     <div id="recipeCardHeatSFTOP" class="recipeCardMoistLeft">#NULL#</div>
+     <div id="recipeCardHeatSFTOPDial" class="rotatingDials"></div>
+     <div id="recipeCardHeatDBBOT" class="recipeCardMoistLeft">#NULL#</div>
+     <div id="recipeCardHeatDBBOTDial" class="rotatingDials"></div>
+     
+     <div id="recipeCardMachineSpeed">000</div>
+     <div id="recipeCardMachineSpeedDial" class="rotatingDials"></div>
+     <div id="recipeCardOrderData" class="recipeCardMoistLeft">#NULL#</div>
+     <div id="recipeCardScore" class="recipeCardMoistRight">#NULL#</div>
+     
+      <div id="loadRecipeButton" class="hotPlate">
+      <div class="hotPlateInner">LOAD</div>
+      </div>
+      
+      <div id="saveRecipeButton" class="hotPlate">
+      <div class="hotPlateInner">SAVE</div>
+      </div>
+     
+     
+    </div>
+  </body>
+</html>

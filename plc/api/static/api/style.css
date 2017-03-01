@@ -1,0 +1,191 @@
+/* -----------------------------------------
+  =Default css to make the demo more pretty
+-------------------------------------------- */
+
+
+
+body{
+    overflow: hidden;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: dotted;
+}
+#Clock{
+    outline: medium dotted;
+    position: absolute;
+    z-index: 2;
+    font-family: Myriad Pro;
+    font-weight: bold;
+}
+#stackerNextPageButton{
+    outline: medium dotted;
+    position: absolute;
+    z-index: 2;
+    font-family: Myriad Pro;
+    font-weight: bold;
+    text-align: right;
+    
+}
+#stackerLabelHeader{
+    outline: medium dotted;
+    position: absolute;
+    z-index: 2;
+    font-family: Myriad Pro;
+    font-weight: bold;
+}
+/*#rightStacker{
+    background-size: contain;
+    height: 400px;
+    margin-left: 2.7%;
+    margin-top: 4%;
+    outline: medium dotted;
+    position: absolute;
+    width: 800px;
+    z-index: 2;
+}*/
+.infoBox{
+    outline: medium dotted;
+    position: absolute;
+    z-index: 2;
+}
+.divText{
+    font-family: Myriad Pro;
+    font-weight: bold;  
+}
+
+.stackerLeftTextWrapper{
+    display: inline-block;
+    width: 1%;
+    text-align: left;
+}
+.stackerRightTextWrapper{
+    display: inline-block;
+    width: 96%;
+    text-align: right;
+}
+#leftStackerBase{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: dotted;
+}
+#leftStackerBackstop{
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: dotted;
+}
+#leftStackerUPDOWN{
+    position: absolute;
+    overflow: hidden;
+  
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: dotted;
+}
+#leftStackerSheetMask{
+    position: absolute;
+    overflow: hidden;
+  
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: dotted;
+    left: 0;
+    bottom: 0;
+    background-color: #fb8713;
+    width: 500px;
+    height: 400px;
+}
+
+#rightStackerBase{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: dotted;
+}
+#rightStackerBackstop{
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: dotted;
+}
+#rightStackerUPDOWN{
+    position: absolute;
+    overflow: hidden;
+  
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: dotted;
+}
+#rightStackerSheetMask{
+    position: absolute;
+    overflow: hidden;
+  
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: dotted;
+    left: 0;
+    bottom: 0;
+    background-color: #fb8713;
+    width: 500px;
+    height: 400px;
+}
+
+/* -----------------------------------------
+  =CSS3 Loading animations
+-------------------------------------------- */
+
+/* =Elements style
+---------------------- */
+.load-wrapp {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    padding: 20px 20px 20px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #d8d8d8;
+    
+    outline: dotted;
+}
+
+.load-wrapp p {padding: 0 0 20px;}
+.load-wrapp:last-child {margin-right: 0;}
+
+.line {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: #4b9cdb;
+}
+
+
+
+/* =Animate the stuff
+------------------------ */
+.load-1 .line:nth-last-child(1) {animation: loadingA 1.5s 1s infinite;}
+.load-1 .line:nth-last-child(2) {animation: loadingA 1.5s .5s infinite;}
+.load-1 .line:nth-last-child(3) {animation: loadingA 1.5s 0s infinite;}
+
+
+.l-1 {animation-delay: .48s;}
+
+@keyframes loadingA {
+    0 {height: 15px;}
+    50% {height: 35px;}
+    100% {height: 15px;}
+}
