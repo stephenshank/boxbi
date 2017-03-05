@@ -81,10 +81,6 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATE_DIRS = [
-    os.path.join(BASE_DIR, 'api', 'templates')
-]
-
 WSGI_APPLICATION = 'plc.wsgi.application'
 
 

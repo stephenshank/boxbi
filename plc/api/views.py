@@ -19,7 +19,7 @@ def test(request):
 
 
 @api_view()
-def plc(request):
+def realtime(request):
     states = get_plc_data()
     return Response(states)
 
@@ -31,8 +31,8 @@ class CorrDataSerializer(serializers.ModelSerializer):
 
 
 @api_view()
-def realtime(request):
-    current_state = DBSerializer(CorrData.objects.latest())
+def plc(request):
+    current_state = CorrDataSerializer(CorrData.objects.latest())
     return Response(current_state.data)
 
 

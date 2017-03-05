@@ -11,7 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         while True:
             try:
-                plc_data = {key: value or None for key, value in get_plc_data().iteritems()}
+                plc_data = get_plc_data()
                 CorrData.objects.create(**plc_data)
             except:
                 pass
