@@ -18,14 +18,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from api import views
-
+from api import views as plc_views
+from experiment import views as experiment_views
 
 urlpatterns = [
     url(r'^admin/?', admin.site.urls),
-    url(r'^test/?', views.test),
-    url(r'^plc/?', views.plc),
-    url(r'^realtime/?', views.realtime),
-    url(r'^odbc', views.odbc),
-    url(r'^card/?', views.card)
+    url(r'^test/?', plc_views.test),
+    url(r'^plc/?', plc_views.plc),
+    url(r'^realtime/?', plc_views.realtime),
+    url(r'^odbc', plc_views.odbc),
+    url(r'^card/?', plc_views.card),
+    url(r'^receive_recipe/?', plc_views.receive_recipe),
+    url(r'^ect_mobile/?', experiment_views.mobile),
+    url(r'^send_recipe/?', plc_views.send_recipe)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
