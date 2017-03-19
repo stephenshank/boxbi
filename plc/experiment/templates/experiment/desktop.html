@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Kampack Lab</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    {% load static %}
+    <link href="{% static 'experiment/desktop.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="{% static 'experiment/favicon.ico' %}"/>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Kampack Lab</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Log</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-10 col-md-offset-2">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="page-header">Log experiment</h1>
+            </div>
+          </div>
+
+          <div class="row retrieve">
+            <div class="col-md-12" id="result">
+              <p><b>Experiment <span class="experiment_id"></span> has been logged.</b></p>
+            </div>
+          </div>
+          <div class="row retrieve">
+            <div class="col-md-2">
+              <input type="text" class="form-control" id='id-input' placeholder="Experiment ID">
+            </div>
+
+            <div class="col-md-10">
+              <button type="button" class="btn btn-primary" onclick="retrieve()">Retrieve information</button>
+            </div>
+          </div>
+
+          <div class="row enter">
+            <div class="col-md-12">
+              <h2>Experiment <span class="experiment_id"></span></h2>
+            </div>
+
+            <div class="col-md-2">
+              <label for="method">Type of test:</label>
+              <select class="form-control" id="method">
+                <option>PIN</option>
+                <option>ECT</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <p><b>Date:</b><span id="datetime"></span></p>
+            </div>
+
+            <div class="col-md-6">
+              <button type="button" class="btn btn-primary" onclick="enter()">Submit</button>
+            </div>
+
+          </div>
+          <div class="row enter">
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 1" id="sample0">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 2" id="sample1">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 3" id="sample2">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 4" id="sample3">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 5" id="sample4">
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <div class="row enter">
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 6" id="sample5">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 7" id="sample6">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 8" id="sample7">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 9" id="sample8">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Sample 10" id="sample9">
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script src="{% static 'experiment/desktop.js' %}" type="text/javascript"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  </body>
+
+</html>

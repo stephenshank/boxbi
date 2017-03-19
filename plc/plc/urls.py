@@ -29,6 +29,10 @@ urlpatterns = [
     url(r'^odbc', plc_views.odbc),
     url(r'^card/?', plc_views.card),
     url(r'^receive_recipe/?', plc_views.receive_recipe),
-    url(r'^ect_mobile/?', experiment_views.mobile),
+    url(r'^mobile/?', experiment_views.mobile),
+    url(r'^desktop/?', experiment_views.desktop),
+    url(r'^initialize/?', experiment_views.initialize),
+    url(r'^retrieve/?', experiment_views.retrieve),
+    url(r'^enter/?', experiment_views.enter),
     url(r'^send_recipe/?', plc_views.send_recipe)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

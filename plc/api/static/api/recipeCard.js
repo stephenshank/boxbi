@@ -6,7 +6,18 @@ $(document).ready(function(){
         });
     
      $( "#loadRecipeButton" ).click(function () {
-            console.log("LOAD Clicked");
+            $.ajax({
+                type: "POST",
+                url: "http://10.120.0.91:8000/send_recipe",
+                data: {
+                    RecipeCardTitle: "[CAN-42R]"
+                },
+                dataType: "JSON",
+                success: function(result){
+                    console.log('--- SEND RECIPE TEST ---')
+                    console.log(result)
+                }
+            });
         });
      
       $( "#saveRecipeButton" ).click(function () {
@@ -355,8 +366,26 @@ $(document).ready(function(){
         var machineSpeedMaxMovement = 170;
         var machineSpeedMinValue = 0;
         var machineSpeedMaxValue = 1000;
-        
-        
+    
+    recipeData = {
+        CorrDataID : "1",
+        DBRoll: "1",
+        SFCERoll: "12",
+        INCERoll: "123",
+        SFBRoll: "1234",
+        INBRoll: "12345"
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "http://10.120.0.91:8000/receive_recipe",
+        data: recipeData,
+        dataType: "JSON"
+    })
+    .done(function(data){
+        console.log('RECIPE RESULT:')
+        console.log(data);
+    })
         
     $.ajax({
         type: "GET",
