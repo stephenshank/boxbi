@@ -1,5 +1,4 @@
-//var main_url = "http://10.120.0.91:8000/";
-var main_url = "http://localhost:8000/";
+var main_url = "http://10.120.0.91:8000/";
 
 // Experiment
 function startExperiment(){
