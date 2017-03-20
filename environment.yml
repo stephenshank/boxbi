@@ -1,0 +1,10 @@
+name: s2
+dependencies:
+- python=2.7
+- anaconda
+- django
+- pyodbc
+- pip:
+  - pycomm
+  - djangorestframework
+  - django-cors-headers
