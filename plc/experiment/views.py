@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from experiment.models import Experiment, Sample
+from experiment.models import Experiment, Sample, Roll
 
 
 def mobile(request):
@@ -44,6 +44,19 @@ def enter(request):
         sample.save()
     experiment.method = request.data['method']
     experiment.save()
+    return Response({
+        'status': 1
+    })
+
+
+@api_view(['POST'])
+def log_roll(request):
+    roll = Roll(
+        stand_number = int(request.data['standNumber']),
+        rollID = request.data['rollID'],
+        side = request.data['side']
+    )
+    roll.save()
     return Response({
         'status': 1
     })

@@ -17,15 +17,42 @@
       </div>
 
       <div data-role="main" class="ui-content">
-        <div id="save">
-          <input type="button" value="Start experiment" onclick="start()">
+        <div id="main">
+          <input type="button" value="Start experiment" onclick="startExperiment()">
+          <input type="button" value="Log rolls" onclick="startRolls()">
         </div>
         <div id="print">
           <h2>Lab experiment</h2>
           <p><b>ID:</b><span id="experiment_id"></span></p>
           <p><b>Date and time:</b><span id="datetime"></span></p>
           <p>Please print this and attach to sample.</p>
-          <input type="button" value="Return" onclick="finish()">
+          <input type="button" value="Return" onclick="finishExperiment()">
+        </div>
+        <div id="rolls">
+            <p id="logStatus"></p>
+            <h2>Input rolls</h2>
+            <div>
+                <h3>Stand</h3>
+                <select id="standNumber">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <h3>Roll IDs</h3>
+                <fieldset class="ui-grid-a">
+                	<div class="ui-block-a">
+                        <input type="text" id="leftRollID" placeholder="Left Roll ID">
+                        <input type="button" value="Log left roll" onclick="logRolls('left')">
+                    </div>
+                	<div class="ui-block-b">
+                        <input type="text" id="rightRollID" placeholder="Right Roll ID">
+                        <input type="button" value="Log right roll" onclick="logRolls('right')">
+                    </div>
+                </fieldset>
+            </div>
+            <input type="button" value="Return" onclick="finishRolls()">
         </div>
       </div>
 

@@ -34,5 +34,6 @@ urlpatterns = [
     url(r'^initialize/?', experiment_views.initialize),
     url(r'^retrieve/?', experiment_views.retrieve),
     url(r'^enter/?', experiment_views.enter),
-    url(r'^send_recipe/?', plc_views.send_recipe)
+    url(r'^send_recipe/?', plc_views.send_recipe),
+    url(r'^log_roll/?', experiment_views.log_roll),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
