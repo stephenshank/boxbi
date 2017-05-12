@@ -40,6 +40,11 @@ class CorrData(models.Model):
     UpperMeterRollGap = models.FloatField(null=True)
     LowerMeterRollGap = models.FloatField(null=True)
     MachineSpeed = models.IntegerField(null=True)
+    DBSplice = models.IntegerField(null=True)
+    CEFMSplice = models.IntegerField(null=True)
+    CEFLSplice = models.IntegerField(null=True)
+    BFMSplice = models.IntegerField(null=True)
+    BFLSplice = models.IntegerField(null=True)
 
 
 class Recipe(models.Model):

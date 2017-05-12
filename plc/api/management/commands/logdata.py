@@ -13,7 +13,8 @@ class Command(BaseCommand):
             try:
                 plc_data = get_plc_data()
                 CorrData.objects.create(**plc_data)
+                print 'logged sample...'
             except:
-                pass
+                print 'issue'
 
-            sleep(5)
+            sleep(2)

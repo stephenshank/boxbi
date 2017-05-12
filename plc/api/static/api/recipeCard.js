@@ -8,7 +8,7 @@ $(document).ready(function(){
      $( "#loadRecipeButton" ).click(function () {
             $.ajax({
                 type: "POST",
-                url: "http://10.120.0.91:8000/send_recipe",
+                url: "http://10.120.3.19:8000/send_recipe",
                 data: {
                     RecipeCardTitle: "[CAN-42R]"
                 },
@@ -378,7 +378,7 @@ $(document).ready(function(){
 
     $.ajax({
         type: "POST",
-        url: "http://10.120.0.91:8000/receive_recipe",
+        url: "http://10.120.3.91:8000/receive_recipe",
         data: recipeData,
         dataType: "JSON"
     })
@@ -389,7 +389,7 @@ $(document).ready(function(){
         
     $.ajax({
         type: "GET",
-        url: "http://10.120.0.91:8000/plc/?format=json"
+        url: "http://10.120.3.19:8000/plc/?format=json"
     })
     .done(function( data ) {
         console.log("Completed an AJAX call");
