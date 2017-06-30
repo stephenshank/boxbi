@@ -1,0 +1,1 @@
+C:\Users\maintShopPC\Anaconda3\envs\oldschool\python.exe C:\Users\maintShopPC\Documents\BoxBI\boxbi\plc\manage.py logdata

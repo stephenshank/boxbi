@@ -45,6 +45,10 @@ class CorrData(models.Model):
     CEFLSplice = models.IntegerField(null=True)
     BFMSplice = models.IntegerField(null=True)
     BFLSplice = models.IntegerField(null=True)
+    ShearCurrent = models.IntegerField(null=True)
+    Shear11P7A = models.IntegerField(null=True)
+    Shear7A3P = models.IntegerField(null=True)
+    Shear3P11P = models.IntegerField(null=True)
 
 
 class Recipe(models.Model):
