@@ -1,9 +1,11 @@
 import json
 import os
+import datetime as dt
 
 from django.shortcuts import render
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import serializers
@@ -11,7 +13,7 @@ from pycomm.ab_comm.slc import Driver as SlcDriver
 import pyodbc
 
 from api.utils import get_plc_data
-from api.models import PLC, CorrData, Recipe
+from api.models import PLC, CorrData, Recipe, SpliceAtom
 
 
 @api_view()
@@ -25,22 +27,10 @@ def realtime(request):
     return Response(states)
 
 
-class CorrDataSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CorrData
-        fields = '__all__'
-
-
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         fields = '__all__'
-
-
-@api_view()
-def plc(request):
-    current_state = CorrDataSerializer(CorrData.objects.latest())
-    return Response(current_state.data)
 
 
 @api_view()
@@ -127,3 +117,37 @@ def send_recipe(request):
     except:
         return Response({'status': -1})
 
+
+def column(request):
+    if 'field' in request.GET.keys():
+        field = request.GET['field']
+    else:
+        field = 'MachineSpeed'
+    datetime_start_string = request.GET['datetime_start']
+    datetime_end_string = request.GET['datetime_end']
+    datetime_start = dt.datetime.strptime(datetime_start_string, '%Y-%m-%dT%H:%M:%SZ')
+    datetime_end = dt.datetime.strptime(datetime_end_string, '%Y-%m-%dT%H:%M:%SZ')
+    entries = CorrData.objects.only('datetime', field).filter(
+        datetime__range=[datetime_start, datetime_end]
+    ).values('datetime', field)
+    return JsonResponse(list(entries), safe=False)
+
+
+def splice_atom(request):
+    atom_datetime_string = request.GET['datetime']
+    atom_datetime = dt.datetime.strptime(atom_datetime_string, '%Y-%m-%dT%H:%M:%SZ')
+    first_shift_start = atom_datetime.replace(hour=11, minute=0)
+    correction = dt.timedelta(hours=24)
+    third_shift_end = first_shift_start+correction
+    entries = SpliceAtom.objects.filter(
+        Datetime__range=[first_shift_start, third_shift_end]
+    ).values()
+    return JsonResponse(list(entries), safe=False)
+
+
+def plc(request):
+    return JsonResponse(list(PLC.objects.all().values()), safe=False)
+
+
+def s2(request):
+    return render(request, 'api/index.html')

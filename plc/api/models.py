@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import datetime as dt
 
 from django.db import models
 
@@ -80,3 +81,18 @@ class Recipe(models.Model):
     BotOrder_CustomerName = models.CharField(max_length=64, null=True)
     IsLabTest = models.BooleanField(default=False)
     RecipeCardTitle = models.CharField(max_length=64, null=True)
+
+
+ATOM_CHOICES = (
+    ("DBSplice", "Double backer"),
+    ("BFLSplice", "B-flute liner"),
+    ("BFMSplice", "B-flute medium"),
+    ("CEFMSplice", "C/E-flute medium"),
+    ("CEFLSplice", "C/E-flute linear"),
+)
+
+class SpliceAtom(models.Model):
+    Datetime = models.DateTimeField(default=dt.datetime.utcnow)
+    AtomType = models.CharField(choices=ATOM_CHOICES, max_length=12)
+    Value = models.IntegerField()
+
