@@ -22,6 +22,7 @@ from api import views as plc_views
 from experiment import views as experiment_views
 
 urlpatterns = [
+    url(r'^s2/?', plc_views.s2),
     url(r'^admin/?', admin.site.urls),
     url(r'^test/?', plc_views.test),
     url(r'^plc/?', plc_views.plc),
@@ -36,4 +37,6 @@ urlpatterns = [
     url(r'^enter/?', experiment_views.enter),
     url(r'^send_recipe/?', plc_views.send_recipe),
     url(r'^log_roll/?', experiment_views.log_roll),
+    url(r'^column/?', plc_views.column),
+    url(r'^splice_atom/?', plc_views.splice_atom),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
