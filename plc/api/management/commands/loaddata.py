@@ -33,13 +33,17 @@ class Command(BaseCommand):
         
         if SpliceAtom.objects.count() == 0:
             print 'Loading SpliceAtom...'
-            with open('data/splice-atoms.csv', 'r') as file:
-                reader = csv.reader(file)
-                header = next(reader)
-                for row in reader:
-                    date = dt.datetime.strptime(row[0], "%Y-%m-%dT%H:%M:%SZ") 
-                    SpliceAtom.objects.create(
-                        Datetime=date,
-                        AtomType=row[1],
-                        Value=int(float(row[2]))
-                    )
+            raw_atom_data = iter(CorrData.objects.only('datetime', 'DBSplice', 'BFLSplice', 'BFMSplice', 'CEFLSplice', 'CEFMSplice').filter(datetime__gte=dt.date(2017, 7, 5)).values())
+            previous_row = next(raw_atom_data)
+            for row in raw_atom_data:
+                for event_type in ['DBSplice', 'BFLSplice', 'BFMSplice', 'CEFLSplice', 'CEFMSplice']:
+                    if row[event_type] != previous_row[event_type]:
+                        try:
+                            SpliceAtom.objects.create(
+                                Datetime=row['datetime'],
+                                AtomType=event_type,
+                                Value=row[event_type]
+                            )
+                        except:
+                            print 'error inserting row!' + str(row)
+                previous_row = row

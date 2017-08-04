@@ -136,8 +136,8 @@ def column(request):
 def splice_atom(request):
     atom_datetime_string = request.GET['datetime']
     atom_datetime = dt.datetime.strptime(atom_datetime_string, '%Y-%m-%dT%H:%M:%SZ')
-    first_shift_start = atom_datetime.replace(hour=11, minute=0)
-    correction = dt.timedelta(hours=24)
+    first_shift_start = atom_datetime.replace(hour=10, minute=30)
+    correction = dt.timedelta(hours=25)
     third_shift_end = first_shift_start+correction
     entries = SpliceAtom.objects.filter(
         Datetime__range=[first_shift_start, third_shift_end]
@@ -151,3 +151,9 @@ def plc(request):
 
 def s2(request):
     return render(request, 'api/index.html')
+
+def snapshot(request):
+    datetime_string = request.GET['datetime']
+    snap = CorrData.objects.filter(datetime__gte=datetime_string).values()[0]
+    return JsonResponse(snap)
+
