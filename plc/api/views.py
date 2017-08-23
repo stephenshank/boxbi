@@ -120,16 +120,28 @@ def send_recipe(request):
 
 def column(request):
     if 'field' in request.GET.keys():
-        field = request.GET['field']
+        fields = [request.GET['field']]
+    elif 'field1' in request.GET.keys():
+        i = 1
+        fields = []
+        key_string = 'field'+str(i)
+        while key_string in request.GET.keys():
+            fields += [request.GET[key_string]]
+            i += 1 
+            key_string = 'field'+str(i)
     else:
-        field = 'MachineSpeed'
+        fields = ['MachineSpeed']
+    if 'latency' in request.GET.keys():
+        latency = request.GET['latency']
+    else:
+        latency = 1
     datetime_start_string = request.GET['datetime_start']
     datetime_end_string = request.GET['datetime_end']
     datetime_start = dt.datetime.strptime(datetime_start_string, '%Y-%m-%dT%H:%M:%SZ')
     datetime_end = dt.datetime.strptime(datetime_end_string, '%Y-%m-%dT%H:%M:%SZ')
-    entries = CorrData.objects.only('datetime', field).filter(
+    entries = CorrData.objects.only('datetime', *fields).filter(
         datetime__range=[datetime_start, datetime_end]
-    ).values('datetime', field)
+    ).values('datetime', *fields)[::latency]
     return JsonResponse(list(entries), safe=False)
 
 
