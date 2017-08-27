@@ -1,9 +1,10 @@
+import datetime
 from time import sleep
 from traceback import format_exc as format_exception
 
 from django.core.management.base import BaseCommand
 
-from api.models import CorrData, StationAtom, ShearAtom
+from api.models import CorrData, SpliceAtom
 from api.utils import get_plc_data
 
 
@@ -25,7 +26,7 @@ class Command(BaseCommand):
                 # Create all instances
                 plc_data = get_plc_data()
                 CorrData.objects.create(**plc_data)
-                
+                current_time = str(datetime.datetime.now())
                 # Create splice related changes
                 for splice_tag in splice_tags[1:]:
                     splice_value = plc_data[splice_tag] - old_data[splice_tag]
@@ -35,6 +36,8 @@ class Command(BaseCommand):
                             Value=plc_value,
                             MinSpeed=None
                         )
+                        print 'Logged atom at ' + current_time + '...'
+                print 'Logged sample at ' + current_time + '...'
             except:
                 print format_exception()
 
