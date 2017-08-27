@@ -39,4 +39,5 @@ urlpatterns = [
     url(r'^log_roll/?', experiment_views.log_roll),
     url(r'^column/?', plc_views.column),
     url(r'^splice_atom/?', plc_views.splice_atom),
+    url(r'^snapshot/?', plc_views.snapshot),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

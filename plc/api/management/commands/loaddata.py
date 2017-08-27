@@ -1,9 +1,11 @@
 import json
 import os
+import csv
+import datetime as dt
 
 from django.core.management.base import BaseCommand
 
-from api.models import PLC
+from api.models import PLC, CorrData, SpliceAtom
 
 
 def load_json(filename):
@@ -17,7 +19,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if PLC.objects.count() == 0:
-            print('Loading PLC table...')
+            print 'Loading PLC table...'
             all_plc_data = load_json('plcs')
             plcs = []
             for plc_data in all_plc_data:
@@ -28,3 +30,9 @@ class Command(BaseCommand):
                 )
                 plcs.append(plc)
             PLC.objects.bulk_create(plcs)
+        
+        if SpliceAtom.objects.count() == 0:
+            print 'Loading SpliceAtom...'
+            reader = csv.DictReader(open('data/SpliceAtom.csv'))
+            for row in reader:
+                SpliceAtom.objects.create(**row)

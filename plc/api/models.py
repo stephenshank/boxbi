@@ -95,4 +95,5 @@ class SpliceAtom(models.Model):
     Datetime = models.DateTimeField(default=dt.datetime.utcnow)
     AtomType = models.CharField(choices=ATOM_CHOICES, max_length=12)
     Value = models.IntegerField()
+    MinSpeed = models.IntegerField(null=True)
 

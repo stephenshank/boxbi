@@ -120,23 +120,35 @@ def send_recipe(request):
 
 def column(request):
     if 'field' in request.GET.keys():
-        field = request.GET['field']
+        fields = [request.GET['field']]
+    elif 'field1' in request.GET.keys():
+        i = 1
+        fields = []
+        key_string = 'field'+str(i)
+        while key_string in request.GET.keys():
+            fields += [request.GET[key_string]]
+            i += 1 
+            key_string = 'field'+str(i)
     else:
-        field = 'MachineSpeed'
+        fields = ['MachineSpeed']
+    if 'latency' in request.GET.keys():
+        latency = request.GET['latency']
+    else:
+        latency = 1
     datetime_start_string = request.GET['datetime_start']
     datetime_end_string = request.GET['datetime_end']
     datetime_start = dt.datetime.strptime(datetime_start_string, '%Y-%m-%dT%H:%M:%SZ')
     datetime_end = dt.datetime.strptime(datetime_end_string, '%Y-%m-%dT%H:%M:%SZ')
-    entries = CorrData.objects.only('datetime', field).filter(
+    entries = CorrData.objects.only('datetime', *fields).filter(
         datetime__range=[datetime_start, datetime_end]
-    ).values('datetime', field)
+    ).values('datetime', *fields)[::latency]
     return JsonResponse(list(entries), safe=False)
 
 
 def splice_atom(request):
     atom_datetime_string = request.GET['datetime']
     atom_datetime = dt.datetime.strptime(atom_datetime_string, '%Y-%m-%dT%H:%M:%SZ')
-    first_shift_start = atom_datetime.replace(hour=11, minute=0)
+    first_shift_start = atom_datetime.replace(hour=11, minute=00)
     correction = dt.timedelta(hours=24)
     third_shift_end = first_shift_start+correction
     entries = SpliceAtom.objects.filter(
@@ -151,3 +163,9 @@ def plc(request):
 
 def s2(request):
     return render(request, 'api/index.html')
+
+def snapshot(request):
+    datetime_string = request.GET['datetime']
+    snap = CorrData.objects.filter(datetime__gte=datetime_string).values()[0]
+    return JsonResponse(snap)
+
