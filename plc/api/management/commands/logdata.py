@@ -18,7 +18,7 @@ class Command(BaseCommand):
             'BFLSplice',
             'CEFMSplice',
             'CEFLSplice'
-        ],
+        ]
         old_data = get_plc_data()
         while True:
             sleep(2)
@@ -33,11 +33,12 @@ class Command(BaseCommand):
                     if splice_value != 0:
                         SpliceAtom.objects.create(
                             AtomType=splice_tag,
-                            Value=plc_value,
+                            Value=int(splice_value),
                             MinSpeed=None
                         )
-                        print 'Logged atom at ' + current_time + '...'
-                print 'Logged sample at ' + current_time + '...'
+                        print 'Logged an atom at ' + current_time + '...'
+                print 'Logged a sample at ' + current_time + '...'
+                old_data = plc_data
             except:
                 print format_exception()
 
