@@ -96,4 +96,5 @@ class SpliceAtom(models.Model):
     AtomType = models.CharField(choices=ATOM_CHOICES, max_length=12)
     Value = models.IntegerField()
     MinSpeed = models.IntegerField(null=True)
+    SpeedAtSplice = models.IntegerField(null=True)
 
