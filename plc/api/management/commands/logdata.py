@@ -34,7 +34,8 @@ class Command(BaseCommand):
                         SpliceAtom.objects.create(
                             AtomType=splice_tag,
                             Value=int(splice_value),
-                            MinSpeed=None
+                            MinSpeed=None,
+                            SpeedAtSplice=plc_data.MachineSpeed
                         )
                         print 'Logged an atom at ' + current_time + '...'
                 print 'Logged a sample at ' + current_time + '...'
